@@ -1,0 +1,36 @@
+{
+  "defaults-file": "/etc/my.cnf",
+  "host": "10.10.10.10",
+  "port": 3306,
+  "socket": "/tmp/mysql.sock",
+  "user": "root",
+  "password": "123456",
+  "record-db-sqlite": "pybackup.db",
+  "record-db-mysql": {
+    "user": "pybackup",
+    "password": "123456",
+    "host": "123.123.123.123",
+    "port": 3306,
+    "database": "pybackup",
+    "charset": "utf8"
+  },
+  "record-type": "both",
+  "tmp-dir": "/data/backups",
+  "parallel": 4,
+  "backup-prefix": "mysql-backup",
+  "remote-host": "10.10.11.11",
+  "remote-store-dir": "pybackups",
+  "compress-type": "xz",
+  "increment": false,
+  "recover-dir": "/data/mysql_recover",
+  "recover-tmp-dir": "/data/backups",
+  "recover-point": "now",
+  "recover-config": {
+    "port": "3307",
+    "socket": "/data/mysql_recover/mysql.scok",
+    "datadir": "/data/mysql_recover/data",
+    "server-id": "7316607",
+    "slow-query-log-file": "/data/mysql_recover/data/slow_sql.log",
+    "innodb-buffer-pool-size": "1280M"
+  }
+}

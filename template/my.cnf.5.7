@@ -1,0 +1,74 @@
+[mysql]
+# CLIENT #
+port                           = {port}
+socket                         = {socket}
+[mysqld]
+# GENERAL #
+port                           = {port}
+user                           = mysql
+default-storage-engine         = InnoDB
+socket                         = {socket}
+pid-file                       = {datadir}/mysql.pid
+server-id                      = {server-id}
+character-set-server           = utf8mb4
+# MyISAM #
+key-buffer-size                = 32M
+# SAFETY #
+max-allowed-packet             = 32M
+max-connect-errors             = 1000000
+skip-name-resolve
+sql-mode                       = STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION
+sysdate-is-now                 = 1
+innodb                         = FORCE
+# DATA STORAGE #
+datadir                        = {datadir}
+# BINARY LOGGING #
+log-bin                        = mysql-bin
+expire-logs-days               = 14
+sync-binlog                    = 1
+# CACHES AND LIMITS #
+tmp-table-size                 = 32M
+max-heap-table-size            = 32M
+query-cache-type               = 0
+query-cache-size               = 0
+max-connections                = 2048
+thread-cache-size              = 50
+open-files-limit               = 65535
+table-definition-cache         = 4096
+table-open-cache               = 1024
+# INNODB #
+innodb-flush-method            = O_DIRECT
+innodb-log-files-in-group      = 2
+innodb-log-file-size           = 1024M
+innodb-flush-log-at-trx-commit = 1
+innodb-file-per-table          = 1
+innodb-buffer-pool-size        = {innodb-buffer-pool-size}
+innodb_buffer_pool_instances   = 1
+# LOGGING #
+log-error                      = {datadir}/error.log
+log-queries-not-using-indexes  = 1
+slow-query-log                 = 1
+slow-query-log-file            = {slow-query-log-file}
+binlog_format                  = ROW
+binlog_cache_size              = 4M
+log-slave-updates
+long_query_time                = 1
+skip-name-resolve
+gtid_mode = on
+enforce_gtid_consistency       = 1
+relay_log_info_repository      = TABLE
+master_info_repository         = TABLE
+relay_log_recovery             = on
+binlog_checksum = none
+group_concat_max_len           = 1024000
+federated
+log_slave_updates =1
+query_cache_type=0
+query_cache_size=0
+# slave
+slave-parallel-type            = LOGICAL_CLOCK
+slave-parallel-workers         = 16
+master_info_repository         = TABLE
+relay_log_info_repository      = TABLE
+relay_log_recovery             = ON
+skip-slave-start

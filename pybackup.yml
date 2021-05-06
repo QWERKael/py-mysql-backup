@@ -1,0 +1,46 @@
+defaults-file: /etc/my.cnf
+port: 3306
+socket: /tmp/mysql.sock
+user: root
+password: '123456'
+record-db-sqlite: pybackup.db
+record-db-mysql:
+  user: pybackup
+  password: '123456'
+  host: 123.123.123.123
+  port: 3306
+  database: pybackup
+  charset: utf8
+record-type: both
+tmp-dir: /data/backups/{host}
+parallel: 4
+remote-host: 10.10.11.11
+remote-store-dir: storge1/{host}
+compress-type: xz
+compress-threads-num: 1
+increment: false
+recover-dir: /data/mysql_recover
+recover-tmp-dir: /data/backups
+recover-point: now
+recover-config:
+  port: '3307'
+  innodb-buffer-pool-size: 1280M
+tmp-table-list: /tmp/table_list
+partial-backup:
+  database1:
+      - table1
+      - table2
+  database2:
+      - table3
+  pybackup:
+      - COLUMNS_LOG
+      - SCHEMA_CHANGE_LOG
+      - TABLES_LOG
+      - backup_config
+      - daily_backupinfo
+partial-restore:
+  user: root
+  password: '123456'
+  port: 3306
+  socket: /tmp/mysql.sock
+  restore-db: auto_restore

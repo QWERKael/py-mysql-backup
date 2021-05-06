@@ -1,0 +1,50 @@
+[mysqld]
+port = {port}
+character-set-server = utf8
+socket = {socket}
+basedir = /usr/local/mysql
+datadir = {datadir}
+expire-logs-days=10
+server-id = {server-id}
+log-bin = mysql-bin
+relay-log = relay-bin
+back-log = 500
+max-connections = 3000
+wait-timeout = 504000
+interactive-timeout = 504000
+max-connect-errors = 1000
+master-info-repository=table
+relay-log-info-repository=table
+relay-log-recovery=1
+read-only=0
+binlog-format=ROW
+
+key-buffer-size = 384M
+max-allowed-packet = 32M
+sort-buffer-size = 4M
+read-buffer-size = 4M
+join-buffer-size = 8M
+thread-cache-size = 64
+tmp-table-size = 256M
+
+long-query-time = 1
+slow-query-log = 1
+slow-query-log-file = {slow-query-log-file}
+skip-name-resolve
+sql-mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+transaction-isolation = REPEATABLE-READ
+innodb-additional-mem-pool-size = 16M
+innodb-buffer-pool-size = {innodb-buffer-pool-size}
+innodb-data-file-path = ibdata1:1024M:autoextend
+innodb-flush-log-at-trx-commit=1
+innodb-log-buffer-size = 16M
+innodb-log-file-size = 256M
+innodb-log-files-in-group = 2
+innodb-max-dirty-pages-pct = 50
+sync-binlog=1
+skip-slave-start
+
+[mysqldump]
+quick
+max-allowed-packet = 32M
